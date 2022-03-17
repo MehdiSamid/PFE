@@ -1,0 +1,13 @@
+create user PFE identified by 123;
+grant dba to PFE;
+
+
+---------------- Create Table User ---------------
+
+create table users (
+email Varchar2(75),
+username varchar2(50),
+password varchar2(50),
+constraint pkuser primary key (username),
+constraint email CHECK(email LIKE '%___@___%.__%')
+);

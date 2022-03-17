@@ -4,16 +4,27 @@
  */
 package gestionstock;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 /**
  *
  * @author intel
  */
 public class CreateAccount extends javax.swing.JFrame {
+    
+    Connection con;
+    ResultSet R;
+    
 
     /**
      * Creates new form CreateAccount
      */
     public CreateAccount() {
+        con = service.getcon();
         initComponents();
     }
 
@@ -70,6 +81,11 @@ public class CreateAccount extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(108, 92, 231));
         jButton2.setText("Sign In");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setBackground(new java.awt.Color(108, 92, 231));
         jLabel7.setFont(new java.awt.Font("Segoe UI Semilight", 3, 14)); // NOI18N
@@ -194,6 +210,11 @@ public class CreateAccount extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Sign Up");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -269,6 +290,70 @@ public class CreateAccount extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Signup Button "Create Account "
+        
+        String check ="select * from users where lower(username)='"+jTextField1.getText().toLowerCase()+"'";
+        
+        String emailreg = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+
+        Boolean result = jTextField1.getText().matches(emailreg);
+
+      
+        
+        
+        if(jTextField1.getText().equals("") || jTextField2.getText().equals("")|| jPasswordField1.getText().equals("")){
+        
+        JOptionPane.showMessageDialog(rootPane, "Data Not Complete");
+        
+        }
+        else{
+             if (result==true) {
+       try {
+                int d  = con.createStatement().executeUpdate(check);
+                if(d==0){     
+                    String p ="insert into users values ('"
+                         +jTextField1.getText()+"','"+jTextField2.getText()+"','"+jPasswordField1.getText()+"')";
+                    System.out.println(p);
+                con.createStatement().executeUpdate("insert into users values ('"
+                         +jTextField1.getText()+"','"+jTextField2.getText()+"','"+jPasswordField1.getText()+"')");
+                JOptionPane.showMessageDialog(rootPane, "welcome as new Member");
+                }else{ 
+                    JOptionPane.showMessageDialog(rootPane, "Username already Exist");
+                }
+            
+            } catch (SQLException ex) {
+                Logger.getLogger(CreateAccount.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         
+        }
+             else{
+                 JOptionPane.showMessageDialog(rootPane, "Email Format Not valid");
+             }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // SignIn Button 
+        
+        String req = "select * from users where username ='"+jTextField3.getText()+"' and password ='"+jPasswordField2.getText()+"'";
+        String user = jTextField3.getText();
+        try {
+            int r  = con.createStatement().executeUpdate(req);
+            if(r!=0){
+            new MainPage(user).setVisible(true);
+            this.setVisible(false);
+            }
+            else{
+            JOptionPane.showMessageDialog(rootPane, "username Or Password Not Valid");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CreateAccount.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
