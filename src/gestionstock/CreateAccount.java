@@ -294,7 +294,7 @@ public class CreateAccount extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Signup Button "Create Account "
         
-        String check ="select * from users where lower(username)='"+jTextField1.getText().toLowerCase()+"'";
+        String check ="select * from users where lower(username)='"+jTextField2.getText().toLowerCase()+"'";
         
         String emailreg = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
 
@@ -312,6 +312,7 @@ public class CreateAccount extends javax.swing.JFrame {
              if (result==true) {
        try {
                 int d  = con.createStatement().executeUpdate(check);
+                
                 if(d==0){     
                     String p ="insert into users values ('"
                          +jTextField1.getText()+"','"+jTextField2.getText()+"','"+jPasswordField1.getText()+"')";
@@ -319,9 +320,15 @@ public class CreateAccount extends javax.swing.JFrame {
                 con.createStatement().executeUpdate("insert into users values ('"
                          +jTextField1.getText()+"','"+jTextField2.getText()+"','"+jPasswordField1.getText()+"')");
                 JOptionPane.showMessageDialog(rootPane, "welcome as new Member");
-                }else{ 
+                jTextField1.setText("");
+                jTextField2.setText("");
+                jPasswordField1.setText("");
+                }
+                else if(d!=0){ 
+                    System.out.println("aaaa");
                     JOptionPane.showMessageDialog(rootPane, "Username already Exist");
                 }
+               
             
             } catch (SQLException ex) {
                 Logger.getLogger(CreateAccount.class.getName()).log(Level.SEVERE, null, ex);
