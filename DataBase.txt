@@ -11,3 +11,30 @@ password varchar2(50),
 constraint pkuser primary key (username),
 constraint email CHECK(email LIKE '%___@___%.__%')
 );
+
+
+-----------Create Table Reminders-------------
+
+create table reminders(
+nomr varchar2(25),
+Descr varchar2(100),
+dater date 
+);
+
+------- create table produit ------------------
+
+
+
+craete table produit (
+idProduit varchar2(50),
+taille varchar2(25),
+prixachat number,
+prixvente number,
+qte number,
+
+);
+
+
+
+
+
