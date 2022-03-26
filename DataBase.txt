@@ -5,11 +5,10 @@ grant dba to PFE;
 ---------------- Create Table User ---------------
 
 create table users (
-email Varchar2(75),
 username varchar2(50),
 password varchar2(50),
-constraint pkuser primary key (username),
-constraint email CHECK(email LIKE '%___@___%.__%')
+role varchar2(20),
+constraint pkuser primary key (username) 
 );
 
 
@@ -22,19 +21,31 @@ dater date
 );
 
 ------- create table produit ------------------
-
-
-
-craete table produit (
-idProduit varchar2(50),
-taille varchar2(25),
+create table article(
+idA varchar2(50),
+CouleurA varchar2(25),
 prixachat number,
 prixvente number,
 qte number,
-
+constraint pkidArt primary key (idA)
 );
 
+create table commande(
+idA varchar2(50),
+qte number,
+dateC date ,
+constraint fkArt foreign key (idA) references article (idA) 
+);
 
+insert into article values('a1','blue',130,250,10);
+insert into article values('a2','blue',130,150,20);
+insert into article values('a3','rouge',130,170,200);
 
+select sum(a.prixvente * c.qte ) as CA  from article a , commande c where a.ida = c.ida and c.datec=to_date('25/03/2022','dd/mm/yyyy') ;
+
+insert into commande values('a1',150,to_date('25/03/2022','dd/mm/yyyy'));
+insert into commande values('a3',10,to_date('25/03/2022','dd/mm/yyyy'));
+insert into commande values('a2',15,to_date('25/03/2022','dd/mm/yyyy'));
+update article set qte=qte+150 where idA = 'a1';
 
 
