@@ -27,14 +27,15 @@ CouleurA varchar2(25),
 prixachat number,
 prixvente number,
 qte number,
-constraint pkidArt primary key (idA)
+constraint pkidArt primary key (idA,couleura)
 );
 
 create table commande(
 idA varchar2(50),
+couleura varchar2(25),
 qte number,
 dateC date ,
-constraint fkArt foreign key (idA) references article (idA) 
+constraint fkArt foreign key (idA,couleura) references article (idA,couleura) 
 );
 
 insert into article values('a1','blue',130,250,10);
