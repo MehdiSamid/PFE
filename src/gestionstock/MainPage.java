@@ -4,9 +4,12 @@
  */
 package gestionstock;
 
-
+import java.sql.ResultSet;
 import java.awt.Color;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
  *
@@ -15,6 +18,7 @@ import javax.swing.JOptionPane;
 public class MainPage extends javax.swing.JFrame {
     Connection con;
     String us;
+    ResultSet R;
     Color c1 = new Color(199,195,254);
     Color c2 = new Color(108,92,231);
     
@@ -36,14 +40,25 @@ public class MainPage extends javax.swing.JFrame {
         initComponents();
         us = user;
         jLabel15.setText("Welcom Mr "+us);
-        
-        
-        
-        
-    
+        rempbudgetStock();
+   
     
     }
     
+    void rempbudgetStock(){
+    
+        try {
+            R = con.createStatement().executeQuery("select sum(prixachat * qte) from article");
+            while (R.next()){
+            jLabel22.setText(R.getString(1) +" DH");
+                    
+            }
+                    } catch (SQLException ex) {
+            Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    
+    }
     
     
     /**
@@ -86,6 +101,7 @@ public class MainPage extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
@@ -441,16 +457,26 @@ public class MainPage extends javax.swing.JFrame {
             .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
+        jLabel22.setFont(new java.awt.Font("Sitka Display", 1, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addGap(0, 110, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -798,6 +824,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

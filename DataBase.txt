@@ -12,13 +12,6 @@ constraint pkuser primary key (username)
 );
 
 
------------Create Table Reminders-------------
-
-create table reminders(
-nomr varchar2(25),
-Descr varchar2(100),
-dater date 
-);
 
 ------- create table produit ------------------
 create table article(
@@ -38,13 +31,44 @@ dateC date ,
 constraint fkArt foreign key (idA,couleura) references article (idA,couleura) 
 );
 
+
+-----  creation table Chiffre d'affaire --------
+
+
+create table ca 
+ as (select sum(a.prixvente * c.qte)as ca , c.datec as datee  from article a , commande c where a.ida = c.ida
+and c.datec = c.datec
+group by c.datec 
+) ;
+
+
+);
+
+create trigger triggerca (
+after to_date('24h',')
+
+);
+
+
+
+
+
+
+
+
+
+-------- insertion -------------
+
 insert into article values('a1','blue',130,250,10);
 insert into article values('a2','blue',130,150,20);
 insert into article values('a3','rouge',130,170,200);
 
 select sum(a.prixvente * c.qte ) as CA  from article a , commande c where a.ida = c.ida and c.datec=to_date('25/03/2022','dd/mm/yyyy') ;
 
-insert into commande values('a1',150,to_date('25/03/2022','dd/mm/yyyy'));
+insert into commande values('a2','blue',120,to_date('25/03/2022','dd/mm/yyyy'));
+insert into commande values('a1','blue',20,to_date('29/03/2022','dd/mm/yyyy'));
+insert into commande values('a2','blue',33,to_date('24/03/2022','dd/mm/yyyy'));
+insert into commande values('a1','blue',150,to_date('24/03/2022','dd/mm/yyyy'));
 insert into commande values('a3',10,to_date('25/03/2022','dd/mm/yyyy'));
 insert into commande values('a2',15,to_date('25/03/2022','dd/mm/yyyy'));
 update article set qte=qte+150 where idA = 'a1';
