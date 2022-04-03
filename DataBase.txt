@@ -28,6 +28,7 @@ idA varchar2(50),
 couleura varchar2(25),
 qte number,
 dateC date ,
+prixventeC number,
 constraint fkArt foreign key (idA,couleura) references article (idA,couleura) 
 );
 
@@ -72,5 +73,22 @@ insert into commande values('a1','blue',150,to_date('24/03/2022','dd/mm/yyyy'));
 insert into commande values('a3',10,to_date('25/03/2022','dd/mm/yyyy'));
 insert into commande values('a2',15,to_date('25/03/2022','dd/mm/yyyy'));
 update article set qte=qte+150 where idA = 'a1';
+
+
+
+
+
+--------- Test table inserting automatically -------
+
+create table commande(
+idA varchar2(50),
+couleura varchar2(25),
+qte number,
+dateC date ,
+prixvente number ,
+constraint fkArtest foreign key (idA,couleura) references article (idA,couleura) 
+);
+
+
 
 

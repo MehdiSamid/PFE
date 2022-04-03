@@ -457,7 +457,7 @@ public class MainPage extends javax.swing.JFrame {
             .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        jLabel22.setFont(new java.awt.Font("Sitka Display", 1, 18)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
