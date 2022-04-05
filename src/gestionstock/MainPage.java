@@ -31,6 +31,9 @@ public class MainPage extends javax.swing.JFrame {
         System.out.println(us);
         con = service.getcon();
         initComponents();
+        rempbudgetStock();
+        rempCa();
+        
         
         
        
@@ -41,6 +44,7 @@ public class MainPage extends javax.swing.JFrame {
         us = user;
         jLabel15.setText("Welcom Mr "+us);
         rempbudgetStock();
+        rempCa();
    
     
     }
@@ -57,6 +61,19 @@ public class MainPage extends javax.swing.JFrame {
             Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
         }
     
+    
+    }
+    void rempCa(){
+      
+        try {
+            ResultSet R = con.createStatement().executeQuery("select sum(qte*prixventec) from commande ");
+            if(R.next()){
+                jLabel24.setText(R.getString(1)+" Dh");
+            
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     
     }
     
@@ -105,6 +122,7 @@ public class MainPage extends javax.swing.JFrame {
         jPanel11 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
@@ -482,6 +500,11 @@ public class MainPage extends javax.swing.JFrame {
 
         jPanel11.setBackground(new java.awt.Color(7, 153, 146));
         jPanel11.setPreferredSize(new java.awt.Dimension(250, 150));
+        jPanel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel11MouseClicked(evt);
+            }
+        });
 
         jPanel17.setBackground(new java.awt.Color(56, 173, 169));
 
@@ -501,16 +524,26 @@ public class MainPage extends javax.swing.JFrame {
             .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
+        jLabel24.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addGap(0, 110, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -773,6 +806,13 @@ public class MainPage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jPanel4MouseClicked
 
+    private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked
+        // TODO add your handling code here:
+        
+       new Ca().setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_jPanel11MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -826,6 +866,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
