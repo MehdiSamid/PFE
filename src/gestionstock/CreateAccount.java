@@ -82,6 +82,7 @@ public class CreateAccount extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(108, 92, 231));
         jButton2.setText("Sign In");
+        jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

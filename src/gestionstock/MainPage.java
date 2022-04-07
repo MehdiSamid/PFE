@@ -33,6 +33,7 @@ public class MainPage extends javax.swing.JFrame {
         initComponents();
         rempbudgetStock();
         rempCa();
+        rempNedd();
         
         
         
@@ -45,6 +46,7 @@ public class MainPage extends javax.swing.JFrame {
         jLabel15.setText("Welcom Mr "+us);
         rempbudgetStock();
         rempCa();
+        rempNedd();
    
     
     }
@@ -70,6 +72,17 @@ public class MainPage extends javax.swing.JFrame {
             if(R.next()){
                 jLabel24.setText(R.getString(1)+" Dh");
             
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+    void rempNedd(){
+        try {
+            ResultSet R = con.createStatement().executeQuery("select * from article where qte < 5 ");
+            while (R.next()){
+              jLabel25.setText(R.getString(1)+" , ...");
             }
         } catch (SQLException ex) {
             Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
@@ -126,9 +139,11 @@ public class MainPage extends javax.swing.JFrame {
         jPanel12 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
@@ -231,7 +246,7 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-add-reminder-24.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-euro-money-24.png"))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -549,6 +564,11 @@ public class MainPage extends javax.swing.JFrame {
 
         jPanel12.setBackground(new java.awt.Color(12, 36, 97));
         jPanel12.setPreferredSize(new java.awt.Dimension(250, 150));
+        jPanel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel12MouseClicked(evt);
+            }
+        });
 
         jPanel21.setBackground(new java.awt.Color(30, 55, 153));
 
@@ -568,21 +588,36 @@ public class MainPage extends javax.swing.JFrame {
             .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
+        jLabel25.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addGap(0, 110, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel13.setBackground(new java.awt.Color(74, 105, 189));
         jPanel13.setPreferredSize(new java.awt.Dimension(250, 150));
+        jPanel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel13MouseClicked(evt);
+            }
+        });
 
         jPanel19.setBackground(new java.awt.Color(106, 137, 204));
 
@@ -602,16 +637,26 @@ public class MainPage extends javax.swing.JFrame {
             .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
+        jLabel26.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addGap(0, 110, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -813,6 +858,16 @@ public class MainPage extends javax.swing.JFrame {
        this.setVisible(false);
     }//GEN-LAST:event_jPanel11MouseClicked
 
+    private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
+        // TODO add your handling code here:
+        new NeedInStock().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jPanel12MouseClicked
+
+    private void jPanel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel13MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel13MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -867,6 +922,8 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
