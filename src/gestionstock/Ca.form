@@ -88,9 +88,7 @@
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="169" max="-2" attributes="0"/>
-                  <Component id="jButton3" min="-2" pref="153" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="169" pref="762" max="32767" attributes="0"/>
                   <Component id="jButton2" min="-2" pref="153" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
               </Group>
@@ -140,10 +138,7 @@
                       <Component id="jScrollPane1" min="-2" pref="290" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="jButton3" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jButton2" min="-2" pref="32" max="-2" attributes="0"/>
                   <EmptySpace pref="58" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -396,26 +391,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="fa" green="f6" red="f5" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Sitka Small" size="14" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="e7" green="5c" red="6c" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Retour"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

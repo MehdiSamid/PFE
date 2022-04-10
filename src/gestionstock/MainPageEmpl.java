@@ -427,12 +427,12 @@ public class MainPageEmpl extends javax.swing.JFrame {
                  JOptionPane.showMessageDialog(rootPane, "something wrong , check informations");     
             }
             else{
-                R = con.createStatement().executeQuery("select prixvente from article where ida ='"
+                R = con.createStatement().executeQuery("select prixvente,prixachat from article where ida ='"
                         +jComboBox1.getSelectedItem()+"' and couleura ='"+jComboBox2.getSelectedItem()+"'");
                 while (R.next()){
                     String req = "insert into commande values('"+jComboBox1.getSelectedItem()
                             +"','"+jComboBox2.getSelectedItem()+"',"+Integer.parseInt(jTextField6.getText())
-                            +",sysdate,"+R.getFloat(1)+")";
+                            +",sysdate,"+R.getFloat(1)+","+R.getFloat(2)+")";
                     if(JOptionPane.showConfirmDialog(rootPane, "Check information Nom: "+jComboBox1.getSelectedItem()
                             +" Couleur : "+jComboBox2.getSelectedItem()+" Quantite "+jTextField6.getText())==JOptionPane.YES_OPTION){
                     int d = con.createStatement().executeUpdate(req);

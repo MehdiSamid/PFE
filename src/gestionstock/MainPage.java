@@ -47,6 +47,7 @@ public class MainPage extends javax.swing.JFrame {
         rempbudgetStock();
         rempCa();
         rempNedd();
+        rembenefiTod();
    
     
     }
@@ -60,6 +61,19 @@ public class MainPage extends javax.swing.JFrame {
                     
             }
                     } catch (SQLException ex) {
+            Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    
+    }
+    void rembenefiTod(){
+        
+        try {
+            ResultSet R  = con.createStatement().executeQuery("select sum((prixventec-prixachatC)*qte) as benefit from commande where trunc(datec) = trunc(sysdate)");
+            if(R.next()){
+            jLabel26.setText(R.getFloat(1)+" DH");
+                        } 
+        }catch (SQLException ex) {
             Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
         }
     
@@ -238,6 +252,9 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
         jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel9MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPanel9MouseEntered(evt);
             }
@@ -617,6 +634,9 @@ public class MainPage extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel13MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel13MouseEntered(evt);
+            }
         });
 
         jPanel19.setBackground(new java.awt.Color(106, 137, 204));
@@ -624,7 +644,7 @@ public class MainPage extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setText("Benefit $$");
+        jLabel20.setText("Benefit Today");
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -853,20 +873,30 @@ public class MainPage extends javax.swing.JFrame {
 
     private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked
         // TODO add your handling code here:
-        
        new Ca().setVisible(true);
-       this.setVisible(false);
+       
     }//GEN-LAST:event_jPanel11MouseClicked
 
     private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
         // TODO add your handling code here:
         new NeedInStock().setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_jPanel12MouseClicked
 
     private void jPanel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel13MouseClicked
         // TODO add your handling code here:
+        new Benefit().setVisible(true);
     }//GEN-LAST:event_jPanel13MouseClicked
+
+    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
+        // TODO add your handling code here:
+        new Benefit().setVisible(true); 
+        
+    }//GEN-LAST:event_jPanel9MouseClicked
+
+    private void jPanel13MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel13MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel13MouseEntered
 
     /**
      * @param args the command line arguments
